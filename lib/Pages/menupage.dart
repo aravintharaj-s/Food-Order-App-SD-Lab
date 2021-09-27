@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sdlad_fos/constants.dart';
 import 'package:sdlad_fos/utilities/menuText.dart';
 import 'cartpage.dart';
+import 'package:sdlad_fos/utilities/navigationDrawerWidget.dart';
 
 class MenuPage extends StatefulWidget {
   static String id = 'Menu_page';
@@ -18,11 +19,13 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kInactiveColor,
+      drawer: NavigationDrawerWidget(),
       appBar: AppBar(
-        leading: Padding(
+        /*leading: Padding(
           padding: EdgeInsets.only(right: 10.0),
           child: Icon(Icons.view_headline_rounded, color: kDarkssn, size: 25),
-        ),
+        ),*/
+        iconTheme: IconThemeData(color: kDarkssn),
         title: menuText(
           text: 'MENU',
           size: 23,
@@ -38,10 +41,15 @@ class _MenuPageState extends State<MenuPage> {
               size: 25,
             ),
           ),
-          /* Padding(
-            padding: EdgeInsets.only(left: 10.0, right: 8.0),
-            child: Icon(Icons.account_circle_sharp, color: kDarkssn, size: 25),
-          ),*/
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, CartPage.id);
+            },
+            child: Padding(
+              padding: EdgeInsets.only(left: 10.0, right: 8.0),
+              child: Icon(Icons.shopping_cart, color: kDarkssn, size: 25),
+            ),
+          ),
         ],
         centerTitle: true,
         backgroundColor: kInactiveColor,
@@ -83,21 +91,6 @@ class _MenuPageState extends State<MenuPage> {
               ),
             ),
           ),
-          /*Positioned(
-              bottom: 10,
-              right: 25,
-              child: RawMaterialButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, CartPage.id);
-                },
-                fillColor: kDarkssn,
-                shape: CircleBorder(),
-                child: Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ))*/
           Column(
             children: List.generate(
               popularFoodList.length,
@@ -243,14 +236,14 @@ Widget popularFoodCard(var imagePath, var name, var price) {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: 8.0),
-            child: CircleAvatar(
-              radius: 24.0,
-              backgroundColor: kInactiveColor,
-              child: IconButton(
-                  icon: Icon(Icons.add), color: kDarkssn, onPressed: () {}),
-            ),
-          ),
+              padding: EdgeInsets.only(right: 8.0),
+              child: CircleAvatar(
+                  radius: 24.0,
+                  backgroundColor: kInactiveColor,
+                  child: IconButton(
+                      icon: Icon(Icons.add),
+                      color: kDarkssn,
+                      onPressed: () {}))),
         ],
       ),
     ),

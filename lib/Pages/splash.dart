@@ -80,7 +80,7 @@ class _SplashState extends State<Splash> {
                   ),
                 ),
                 Text(
-                  'FOOD ORDERING APPLICATION',
+                  'FOOD ORDERING APP',
                   style: TextStyle(
                     letterSpacing: 2.5,
                     fontSize: 20.0,

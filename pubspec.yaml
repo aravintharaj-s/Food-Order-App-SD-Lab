@@ -25,8 +25,9 @@ dependencies:
     sdk: flutter
   simple_animations: ^3.1.1
 
+
   # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for
+  # Use with the CupertinoIcons
   cupertino_icons: ^1.0.2
 
 dev_dependencies:

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sdlad_fos/constants.dart';
 
-class CartItem extends StatefulWidget {
-  _CartItemState createState() => _CartItemState();
-}
+class OrderCard extends StatelessWidget {
+  final String name;
+  final String img;
+  final double price;
+  const OrderCard({required this.name, required this.img, required this.price});
 
-class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -16,7 +18,7 @@ class _CartItemState extends State<CartItem> {
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFFD3D3D3), width: 2.0),
+                border: Border.all(color: kDarkssn, width: 2.0),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               width: 45.0,
@@ -29,16 +31,18 @@ class _CartItemState extends State<CartItem> {
                   children: <Widget>[
                     InkWell(
                         onTap: () {},
-                        child: Icon(Icons.keyboard_arrow_up,
-                            color: Color(0xFFD3D3D3))),
+                        child: Icon(Icons.keyboard_arrow_up, color: kDarkssn)),
                     Text(
-                      "0",
-                      style: TextStyle(fontSize: 18.0, color: Colors.grey),
+                      "1",
+                      style: TextStyle(fontSize: 18.0, color: kDarkssn),
                     ),
                     InkWell(
-                        onTap: () {},
-                        child: Icon(Icons.keyboard_arrow_down,
-                            color: Color(0xFFD3D3D3))),
+                      onTap: () {},
+                      child: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: kDarkssn,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -51,8 +55,7 @@ class _CartItemState extends State<CartItem> {
               width: 70.0,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("images/omelette.png"),
-                      fit: BoxFit.cover),
+                      image: AssetImage(img), fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(35.0),
                   boxShadow: [
                     BoxShadow(
@@ -69,15 +72,15 @@ class _CartItemState extends State<CartItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Grilled Chicken",
+                  name,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5.0),
                 Text(
-                  "\u023B 3.0",
+                  "$price",
                   style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.orangeAccent,
+                      color: kDarkssn,
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5.0),
@@ -89,26 +92,10 @@ class _CartItemState extends State<CartItem> {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          Text("Chicken",
-                              style: TextStyle(
-                                  color: Color(0xFFD3D3D3),
-                                  fontWeight: FontWeight.bold)),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Text(
-                              "x",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
+                          Icon(Icons.star, color: Colors.orange, size: 17),
+                          Icon(Icons.star, color: Colors.orange, size: 17),
+                          Icon(Icons.star, color: Colors.orange, size: 17),
+                          Icon(Icons.star, color: Colors.orange, size: 17),
                         ],
                       ),
                     ],
@@ -121,7 +108,7 @@ class _CartItemState extends State<CartItem> {
               onTap: () {},
               child: Icon(
                 Icons.cancel,
-                color: Colors.grey,
+                color: Colors.black,
               ),
             ),
           ],

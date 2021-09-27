@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sdlad_fos/Pages/cartpage.dart';
 import 'package:sdlad_fos/Pages/forgotPassword_page.dart';
+import 'package:sdlad_fos/Pages/invoice.dart';
 import 'package:sdlad_fos/Pages/login_page.dart';
 import 'package:sdlad_fos/Pages/menupage.dart';
 import 'package:sdlad_fos/Pages/signup_page.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
           ForgotPassword.id: (context) => ForgotPassword(),
           MenuPage.id: (context) => MenuPage(),
           CartPage.id: (context) => CartPage(),
+          InvoicePage.id: (context) => InvoicePage()
         });
   }
 }

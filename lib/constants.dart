@@ -43,3 +43,13 @@ const popularFoodList = [
     'price': '40'
   },
 ];
+
+const CartFoodList = [
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Plain Dosa', 'price': 40},
+  {'imagePath': 'images/omelette.png', 'name': 'Bread Omlette', 'price': 40},
+  {
+    'imagePath': 'images/tikka-masala (1).png',
+    'name': 'Gobi Manchurian',
+    'price': 80
+  },
+];

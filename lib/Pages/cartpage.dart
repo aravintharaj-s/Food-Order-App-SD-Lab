@@ -1,55 +1,210 @@
 import 'package:flutter/material.dart';
+import 'package:sdlad_fos/Pages/invoice.dart';
+import 'package:sdlad_fos/utilities/navigationDrawerWidget.dart';
 import 'package:sdlad_fos/utilities/menuText.dart';
+import 'package:sdlad_fos/utilities/sample_cart.dart';
 import 'package:sdlad_fos/constants.dart';
-
-import 'package:sdlad_fos/utilities/cart_item_card.dart';
 
 class CartPage extends StatefulWidget {
   static String id = 'Cart_page';
-
-  const CartPage({Key? key}) : super(key: key);
-
   @override
   _CartPageState createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
+  TimeOfDay _time = TimeOfDay.now();
+
+  Future<Null> selecTime(BuildContext context) async {
+    _time = (await showTimePicker(
+      context: context,
+      initialTime: _time,
+    ))!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kInactiveColor,
+      drawer: NavigationDrawerWidget(),
       appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.only(right: 15.0),
-          child: Icon(Icons.chevron_left, color: kDarkssn, size: 25),
-        ),
+        iconTheme: IconThemeData(color: kDarkssn),
         title: menuText(
-          text: 'CART',
+          text: 'MY CART',
           size: 23,
-          color: Colors.black,
-          fontWeight: FontWeight.w500,
+          color: kDarkssn,
+          fontWeight: FontWeight.bold,
         ),
-        //centerTitle: true,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: GestureDetector(
+              onTap: () {
+                selecTime(context);
+              },
+              child: Icon(
+                Icons.alarm,
+                color: kDarkssn,
+                size: 25,
+              ),
+            ),
+          ),
+        ],
+        centerTitle: true,
         backgroundColor: kInactiveColor,
         elevation: 0,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            //Padding(
-            // padding: const EdgeInsets.only(left: 16.0),
-            //child:
-            menuText(text: 'My Cart', fontWeight: FontWeight.w600, size: 25),
-            SizedBox(
-              height: 10,
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          OrderCard(
+              name: "Plain Dosa", img: "images/masala-dosa.png", price: 40),
+          OrderCard(
+              name: "Bread Omelette", img: "images/omelette.png", price: 40),
+          OrderCard(
+              name: "Gobi Manchurian",
+              img: "images/tikka-masala (1).png",
+              price: 80),
+        ],
+      ),
+      bottomNavigationBar: _buildTotalContainer(),
+    );
+  }
+
+  Widget _buildTotalContainer() {
+    return Container(
+      height: 220.0,
+      padding: EdgeInsets.only(
+        left: 10.0,
+        right: 10.0,
+      ),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Subtotal",
+                style: TextStyle(
+                    color: kInactiveColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "160.0",
+                style: TextStyle(
+                    color: kInactiveColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Discount",
+                style: TextStyle(
+                    color: kInactiveColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "10.0",
+                style: TextStyle(
+                    color: kInactiveColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Tax",
+                style: TextStyle(
+                    color: kInactiveColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "0.5",
+                style: TextStyle(
+                    color: kInactiveColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Divider(
+            height: 2.0,
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Cart Total",
+                style: TextStyle(
+                    color: kDarkssn,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "170",
+                style: TextStyle(
+                    color: kDarkssn,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, InvoicePage.id);
+            },
+            child: Container(
+              height: 50.0,
+              decoration: BoxDecoration(
+                color: kDarkssn,
+                borderRadius: BorderRadius.circular(35.0),
+              ),
+              child: Center(
+                child: Text(
+                  "Proceed To Checkout",
+                  style: TextStyle(
+                    color: kInactiveColor,
+                    fontSize: 18.0,
+                    backgroundColor: kDarkssn,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
-            ListView(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              scrollDirection: Axis.vertical,
-              children: [CartItem(), CartItem(), CartItem(), CartItem()],
-            )
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+        ],
       ),
     );
   }
