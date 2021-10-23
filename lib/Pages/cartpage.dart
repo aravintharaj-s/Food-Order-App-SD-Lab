@@ -126,25 +126,24 @@ class _CartPageState extends State<CartPage> {
           SizedBox(
             height: 10.0,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Tax",
-                style: TextStyle(
-                    color: kInactiveColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "0.5",
-                style: TextStyle(
-                    color: kInactiveColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: GestureDetector(
+                onTap: () {
+                  selecTime(context);
+                },
+                child: Row(
+                  children: [
+                    menuText(
+                      text: "Select Time : ",
+                    ),
+                    Icon(
+                      Icons.alarm,
+                      color: kDarkssn,
+                      size: 25,
+                    ),
+                  ],
+                )),
           ),
           SizedBox(
             height: 10.0,
@@ -200,9 +199,6 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20.0,
           ),
         ],
       ),
