@@ -24,6 +24,7 @@ List categoriesList = [
   sandwich,
   maggie,
   varietyRice,
+  chaat,
   juice,
   milkshake,
 ];
@@ -302,12 +303,12 @@ const food_Category_List = [
     'name': 'Maggi',
   },
   {
-    'imagePath': 'images/samosa.png',
-    'name': 'Chaat',
-  },
-  {
     'imagePath': 'images/rice.png',
     'name': 'Variety Rice',
+  },
+  {
+    'imagePath': 'images/samosa.png',
+    'name': 'Chaat',
   },
   {
     'imagePath': 'images/juice.png',
@@ -683,4 +684,18 @@ const varietyRice = [
   {'imagePath': 'images/masala-dosa.png', 'name': 'Tamarind Rice', 'price': 35},
   {'imagePath': 'images/masala-dosa.png', 'name': 'Coconut Rice', 'price': 35},
   {'imagePath': 'images/masala-dosa.png', 'name': 'Carrot Rice', 'price': 35},
+];
+
+const chaat = [
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Samosa', 'price': 10},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Chenna Samosa', 'price': 40},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Bhel Puri', 'price': 30},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Aalo Puri', 'price': 40},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Dahi Puri', 'price': 45},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Sev Puri', 'price': 40},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Paani Puri', 'price': 25},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Masala Puri', 'price': 35},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Chenna Masala', 'price': 30},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Dahi Papdi Chaat', 'price': 45},
+  {'imagePath': 'images/masala-dosa.png', 'name': 'Pav Bhaji', 'price': 50},
 ];
