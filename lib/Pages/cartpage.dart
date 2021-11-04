@@ -54,7 +54,7 @@ class _CartPageState extends State<CartPage> {
         elevation: 0,
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        padding: EdgeInsets.symmetric(horizontal: 5.0),
         scrollDirection: Axis.vertical,
         children: <Widget>[
           OrderCard(
