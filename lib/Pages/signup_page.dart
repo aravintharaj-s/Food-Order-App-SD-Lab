@@ -1,111 +1,192 @@
+
+import 'login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sdlad_fos/constants.dart';
-import 'package:sdlad_fos/fade_animation.dart';
-import '../utilities/roundedbutton.dart';
-import '../utilities/roundedpasswordfield.dart';
-import '../utilities/roundedinput_field.dart';
-import 'menupage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class Signup extends StatelessWidget {
   static String id = 'Signup_page';
 
   @override
+  late String _email,_password,_fullName, _mobileNumber;
+  @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              color: kInactiveColor,
-              image: DecorationImage(
-                  image: AssetImage('images/undraw_Appreciation_re_p6rl.png'),
-                  colorFilter:
-                      ColorFilter.mode(kInactiveColor, BlendMode.darken)),
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned(
-                  top: 0,
-                  child: FadeAnimation(
-                    1.5,
-                    Container(
-                      child: Image.asset('images/pp.png'),
-                    ),
-                  ),
-                  width: size.width,
-                  height: size.height * 0.25,
-                ),
-                Positioned(
-                  top: 130,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: size.height * 0.1),
-                      RoundedInputField(
-                        c1: Colors.white70,
-                        h1: 45,
-                        icon: Icons.person,
-                        hintText: "Name",
-                        onChanged: (value) {},
-                      ),
-                      SizedBox(height: size.height * 0.01),
-                      RoundedInputField(
-                        c1: Colors.white70,
-                        h1: 45,
-                        icon: Icons.mail,
-                        hintText: "Email",
-                        onChanged: (value) {},
-                      ),
-                      SizedBox(height: size.height * 0.01),
-                      RoundedInputField(
-                        c1: Colors.white70,
-                        h1: 45,
-                        icon: Icons.phone,
-                        hintText: "Phone",
-                        onChanged: (value) {},
-                      ),
-                      SizedBox(height: size.height * 0.01),
-                      RoundedPasswordField(
-                        c1: Colors.white70,
-                        h1: 45,
-                        hintText: "Password",
-                        onChanged: (value) {},
-                      ),
-                      SizedBox(height: size.height * 0.01),
-                      RoundedPasswordField(
-                        c1: Colors.white70,
-                        h1: 45,
-                        hintText: "Re-enter Password",
-                        onChanged: (value) {},
-                      ),
-                      RoundedButton(
-                        text: "SIGNUP",
-                        press: () {
-                          Navigator.pushNamed(context, MenuPage.id);
-                        },
-                      ),
-                    ],
+      body: Column(
+        children: <Widget>[
+          SafeArea(
+            child: Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top: 20),
+                height: 180,
+                width: 180,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("images/ssn2.jpg"),
+                    alignment: Alignment.bottomCenter,
                   ),
                 ),
-                /* Positioned(
-                  bottom: 0,
-                  child: FadeAnimation(
-                    2,
-                    Container(
-                      child: Image.asset('images/heart.png'),
-                    ),
-                  ),
-                  width: size.width,
-                  height: size.height,
-                ),*/
-              ],
+              ),
             ),
           ),
-        ),
+          SizedBox(
+            height: 50.0,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text("SIGN UP",
+                          style: TextStyle(
+                            color: kDarkssn,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
+                          )),
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Icon(
+                          Icons.person,
+                          color: kDarkssn,
+                        ),
+                      ),
+                      Expanded(
+                        child: TextField(
+                          onChanged: (value){
+                            _fullName=value;
+                          },
+                          decoration: InputDecoration(
+                            hintText: "Full Name",
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Icon(
+                          Icons.phone,
+                          color: kDarkssn,
+                        ),
+                      ),
+                      Expanded(
+                        child: TextField(
+                          onChanged: (value){
+                            _mobileNumber=value;
+                          },
+                          decoration: InputDecoration(
+                            hintText: "Mobile Number",
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Icon(
+                          Icons.alternate_email,
+                          color: kDarkssn,
+                        ),
+                      ),
+                      Expanded(
+                        child: TextField(
+                          onChanged: (value){
+                            _email=value;
+                          },
+                          decoration: InputDecoration(
+                            hintText: "Email Address",
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Icon(
+                          Icons.lock,
+                          color: kDarkssn,
+                        ),
+                      ),
+                      Expanded(
+                        child: TextField(
+                          onChanged: (value){
+                            _password=value;
+                          },
+                          decoration: InputDecoration(
+                            hintText: "Password",
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Spacer(),
+                  GestureDetector(
+                    child: Container(
+                      color: kDarkssn,
+                      margin: EdgeInsets.only(top: 10.0),
+                      width: double.infinity,
+                      height: 80.0,
+                      child: Center(
+                        child: Text('Sign Up',
+                            style: TextStyle(
+                              color: kInactiveColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                            )),
+                      ),
+                    ),
+                    onTap: () async {
+                      UserCredential user= await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email, password: _password);
+                      if(user!=null)
+                      {
+                       await FirebaseFirestore.instance.collection('users').doc(_email).set({
+                          'FullName':_fullName,
+                          'MobileNumber':_mobileNumber,
+                          'Email':_email,
+                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return LoginPage();
+                          }),
+                        );
+                      }
+                      else
+                      {
+                        print('user does not exist');
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

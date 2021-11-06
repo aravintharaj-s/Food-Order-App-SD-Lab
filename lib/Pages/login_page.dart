@@ -1,131 +1,177 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sdlad_fos/fade_animation.dart';
-import 'package:sdlad_fos/Pages/forgotPassword_page.dart';
-import '../utilities/roundedinput_field.dart';
-import '../utilities/roundedpasswordfield.dart';
-import '../utilities/roundedbutton.dart';
-import 'menupage.dart';
-import '../constants.dart';
+import 'package:sdlad_fos/Pages/menupage.dart';
+import 'package:sdlad_fos/Pages/signup_page.dart';
 import 'signup_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../constants.dart';
 
+
+// ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
   static String id = 'Login_page';
   const LoginPage({Key? key}) : super(key: key);
-
-  @override
+ @override
   _LoginPageState createState() => _LoginPageState();
+  
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late String _email, _password;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: size.height,
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Container(
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top: 20),
+                height: 180,
+                width: 180,
                 decoration: BoxDecoration(
-                    /* image: DecorationImage(
-                        image: AssetImage(
-                          'images/undraw_breakfast_psiw.png',
-                        ),
-                        fit: BoxFit.cover),*/
-                    color: Colors.white),
-              ),
-              Positioned(
-                top: 0,
-                child: FadeAnimation(
-                  2,
-                  Container(
-                    child: Image.asset('images/undraw_breakfast.png'),
+                  image: DecorationImage(
+                    image: AssetImage("images/ssn2.jpg"),
+                    alignment: Alignment.bottomCenter,
                   ),
                 ),
-                width: size.width,
-                height: size.height * 0.25,
               ),
-              Positioned(
-                top: 130,
+            ),
+            SizedBox(
+              height: 50.0,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: size.height * 0.03),
-                    RoundedInputField(
-                      c1: kInactiveColor,
-                      h1: 50,
-                      icon: Icons.person,
-                      hintText: "Your Email",
-                      onChanged: (value) {},
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("SIGN IN",
+                            style: TextStyle(
+                              color: kDarkssn,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40,
+                            )),
+                        FlatButton(
+                          color: Colors.black12,
+                          textColor: Colors.white,
+                          child: Text('Sign Up',
+                              style: TextStyle(
+                                color: kDarkssn,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          onPressed: ()
+                          {
+                            print('Pressed SignUP!');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return Signup();
+                              }),
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                    RoundedPasswordField(
-                      c1: kInactiveColor,
-                      h1: 50,
-                      hintText: "Password",
-                      onChanged: (value) {},
-                    ),
-                    RoundedButton(
-                      text: "LOGIN",
-                      press: () {
-                        Navigator.pushNamed(context, MenuPage.id);
-                      },
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: Icon(
+                              Icons.alternate_email,
+                              color: kDarkssn,
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              onChanged: (value){
+                                _email=value;
+                              },
+                              decoration: InputDecoration(
+                                hintText: "Email Address",
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't have an account ?",
-                          style: TextStyle(color: kDarkssn),
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(right: 16),
+                          child: Icon(
+                            Icons.lock,
+                            color: kDarkssn,
+                          ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, Signup.id);
-                          },
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                                color: kDarkssn, fontWeight: FontWeight.bold),
+                        Expanded(
+                          child: TextField(
+                            obscureText: true,
+                            onChanged: (value){
+                              _password=value;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "Password",
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
+                    Spacer(),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, ForgotPassword.id);
-                      },
-                      child: Text(
-                        "Forgot Password",
-                        style: TextStyle(
-                            color: kDarkssn,
-                            decoration: TextDecoration.underline),
+                      child: Container(
+                        color: kDarkssn,
+                        margin: EdgeInsets.only(top: 10.0),
+                        width: double.infinity,
+                        height: 80.0,
+                        child: Center(
+                          child: Text('LogIn',
+                              style: TextStyle(
+                                color: kInactiveColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              )),
+                        ),
                       ),
+                      onTap: ()async
+                      {
+                        UserCredential user= await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+                        if(user!=null)
+                          {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return Login_Successfull();
+                              }),
+                            );
+                          }
+                        else
+                          {
+                            print('user does not exist');
+                          }
+                      },
                     ),
                   ],
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                child: FadeAnimation(
-                  2,
-                  Container(
-                    child: Image.asset('images/login.png'),
-                    width: size.width,
-                    height: size.height * 0.365,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
+  }
+}
+class Login_Successfull extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MenuPage();
+    
   }
 }
