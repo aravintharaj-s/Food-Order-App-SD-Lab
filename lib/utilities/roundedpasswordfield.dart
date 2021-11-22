@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'textfield_container.dart';
 
-class RoundedPasswordField extends StatelessWidget {
+bool ispasshide = true;
+
+class RoundedPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
   final String hintText;
   final double h1;
@@ -15,27 +17,41 @@ class RoundedPasswordField extends StatelessWidget {
   });
 
   @override
+  _RoundedPasswordFieldState createState() => _RoundedPasswordFieldState();
+}
+
+class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
+  @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      color: c1,
-      height: h1,
+      color: widget.c1,
+      height: widget.h1,
       child: TextField(
-        obscureText: true,
-        onChanged: onChanged,
+        obscureText: ispasshide,
+        onChanged: widget.onChanged,
         cursorColor: kSSNColor,
         decoration: InputDecoration(
-          hintText: hintText,
+          hintText: widget.hintText,
           icon: Icon(
             Icons.lock,
             color: kSSNColor,
           ),
-          suffixIcon: Icon(
-            Icons.visibility,
-            color: kSSNColor,
+          suffixIcon: InkWell(
+            onTap: _togglepass,
+            child: Icon(
+              Icons.visibility,
+              color: kSSNColor,
+            ),
           ),
           border: InputBorder.none,
         ),
       ),
     );
+  }
+
+  void _togglepass() {
+    setState(() {
+      ispasshide = !ispasshide;
+    });
   }
 }
