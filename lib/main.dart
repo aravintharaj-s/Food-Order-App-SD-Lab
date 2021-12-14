@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sdlad_fos/Pages/cartpage.dart';
 import 'package:sdlad_fos/Pages/forgotPassword_page.dart';
 import 'package:sdlad_fos/Pages/invoice.dart';
 import 'package:sdlad_fos/Pages/login_page.dart';
@@ -12,7 +11,7 @@ import 'Pages/splash.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
           Signup.id: (context) => Signup(),
           ForgotPassword.id: (context) => const ForgotPassword(),
           MenuPage.id: (context) => const MenuPage(),
-          CartPage.id: (context) => CartPage(),
+          //CartPage.id: (context) => const CartPage(),
           InvoicePage.id: (context) => const InvoicePage()
         });
   }

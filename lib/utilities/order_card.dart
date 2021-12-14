@@ -5,7 +5,7 @@ import 'package:sdlad_fos/utilities/menuText.dart';
 class OrderCard extends StatefulWidget {
   final String name;
   final String img;
-  final double price;
+  final int price;
   const OrderCard({required this.name, required this.img, required this.price});
   @override
   _OrderCardState createState() => _OrderCardState();

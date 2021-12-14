@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sdlad_fos/Pages/invoice.dart';
+import 'package:sdlad_fos/Pages/menupage.dart';
 import 'package:sdlad_fos/constants.dart';
 import 'package:sdlad_fos/utilities/menuText.dart';
 import 'package:sdlad_fos/utilities/navigationDrawerWidget.dart';
@@ -7,8 +8,8 @@ import 'package:sdlad_fos/utilities/sample_cart.dart';
 
 class CartPage extends StatefulWidget {
   static String id = 'Cart_page';
-
-  const CartPage({Key? key}) : super(key: key);
+  final List cartItems;
+  const CartPage({Key? key, required this.cartItems}) : super(key: key);
   @override
   _CartPageState createState() => _CartPageState();
 }
@@ -55,25 +56,25 @@ class _CartPageState extends State<CartPage> {
         backgroundColor: kInactiveColor,
         elevation: 0,
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 5.0),
-        scrollDirection: Axis.vertical,
-        children: const <Widget>[
-          OrderCard(
-              name: "Plain Dosa", img: "images/masala-dosa.png", price: 40),
-          OrderCard(
-              name: "Bread Omelette", img: "images/omelette.png", price: 40),
-          OrderCard(
-              name: "Gobi Manchurian",
-              img: "images/tikka-masala (1).png",
-              price: 80),
-        ],
+      body: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        itemCount: cartItems.length,
+        itemBuilder: (context, index) {
+          return OrderCard(
+              name: cartItems[index]['name'],
+              img: cartItems[index]['imagePath'],
+              price: cartItems[index]['price']);
+        },
       ),
       bottomNavigationBar: _buildTotalContainer(),
     );
   }
 
   Widget _buildTotalContainer() {
+    int total = 0;
+    for (int i = 0; i < cartItems.length; i++) {
+      total = total + cartItems[i]['price'] as int;
+    }
     return Container(
       height: 220.0,
       padding: const EdgeInsets.only(
@@ -159,8 +160,8 @@ class _CartPageState extends State<CartPage> {
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
-              Text(
+            children: <Widget>[
+              const Text(
                 "Cart Total",
                 style: TextStyle(
                     color: kDarkssn,
@@ -168,8 +169,8 @@ class _CartPageState extends State<CartPage> {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                "170",
-                style: TextStyle(
+                "$total",
+                style: const TextStyle(
                     color: kDarkssn,
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold),
@@ -207,3 +208,17 @@ class _CartPageState extends State<CartPage> {
     );
   }
 }
+// ListView(
+// padding: const EdgeInsets.symmetric(horizontal: 5.0),
+// scrollDirection: Axis.vertical,
+// children: const <Widget>[
+// OrderCard(
+// name: "Plain Dosa", img: "images/masala-dosa.png", price: 40),
+// OrderCard(
+// name: "Bread Omelette", img: "images/omelette.png", price: 40),
+// OrderCard(
+// name: "Gobi Manchurian",
+// img: "images/tikka-masala (1).png",
+// price: 80),
+// ],
+// )

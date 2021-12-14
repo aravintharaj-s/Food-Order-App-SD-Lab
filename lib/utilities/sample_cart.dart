@@ -4,7 +4,7 @@ import 'package:sdlad_fos/constants.dart';
 class OrderCard extends StatelessWidget {
   final String name;
   final String img;
-  final double price;
+  final int price;
   const OrderCard({required this.name, required this.img, required this.price});
 
   @override
@@ -33,7 +33,7 @@ class OrderCard extends StatelessWidget {
                         onTap: () {},
                         child: const Icon(Icons.keyboard_arrow_up,
                             color: kDarkssn)),
-                    Text(
+                    const Text(
                       "1",
                       style: TextStyle(fontSize: 18.0, color: kDarkssn),
                     ),
@@ -93,7 +93,7 @@ class OrderCard extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
                       Row(
-                        children: <Widget>[
+                        children: const <Widget>[
                           Icon(Icons.star, color: Colors.orange, size: 17),
                           Icon(Icons.star, color: Colors.orange, size: 17),
                           Icon(Icons.star, color: Colors.orange, size: 17),

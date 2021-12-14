@@ -29,6 +29,7 @@ List categoriesList = [
   juice,
   milkshake,
 ];
+List cartItems = [];
 
 class _MenuPageState extends State<MenuPage> {
   @override
@@ -59,7 +60,11 @@ class _MenuPageState extends State<MenuPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, CartPage.id);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CartPage(cartItems: cartItems)));
+              //Navigator.pushNamed(context, CartPage.id, arguments: cartItems);
             },
             child: const Padding(
               padding: EdgeInsets.only(left: 10.0, right: 8.0),
@@ -173,7 +178,7 @@ class _MenuPageState extends State<MenuPage> {
   }
 }
 
-Widget popularFoodCard(var imagePath, var name, var price) {
+Widget popularFoodCard(String imagePath, String name, int price) {
   return Container(
     margin: const EdgeInsets.only(right: 20, left: 15, top: 25),
     decoration: BoxDecoration(
@@ -255,7 +260,14 @@ Widget popularFoodCard(var imagePath, var name, var price) {
                   child: IconButton(
                       icon: const Icon(Icons.add),
                       color: kDarkssn,
-                      onPressed: () {}))),
+                      onPressed: () {
+                        cartItems.add({
+                          'imagePath': imagePath,
+                          'name': name,
+                          'price': price,
+                        });
+                        print(cartItems);
+                      }))),
         ],
       ),
     ),
