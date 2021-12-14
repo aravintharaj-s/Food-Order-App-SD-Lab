@@ -1,19 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:sdlad_fos/constants.dart';
-import 'package:sdlad_fos/fade_animation.dart';
-import '../utilities/roundedbutton.dart';
-import '../utilities/roundedpasswordfield.dart';
-import '../utilities/roundedinput_field.dart';
-import 'package:sdlad_fos/Pages/login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:sdlad_fos/Pages/login_page.dart';
+import 'package:sdlad_fos/constants.dart';
+import 'package:sdlad_fos/fade_animation.dart';
+
+import '../utilities/roundedbutton.dart';
+import '../utilities/roundedinput_field.dart';
+import '../utilities/roundedpasswordfield.dart';
 
 class Signup extends StatelessWidget {
   static String id = 'Signup_page';
 
-  @override
   late String _email, _password, _fullName, _mobileNumber;
+
+  Signup({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,7 +24,7 @@ class Signup extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: kInactiveColor,
               image: DecorationImage(
                   image: AssetImage('images/undraw_Appreciation_re_p6rl.png'),
@@ -36,9 +38,7 @@ class Signup extends StatelessWidget {
                   top: 0,
                   child: FadeAnimation(
                     1.5,
-                    Container(
-                      child: Image.asset('images/pp.png'),
-                    ),
+                    Image.asset('images/pp.png'),
                   ),
                   width: size.width,
                   height: size.height * 0.25,
@@ -114,7 +114,7 @@ class Signup extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return LoginPage();
+                                return const LoginPage();
                               }),
                             );
                           } else {

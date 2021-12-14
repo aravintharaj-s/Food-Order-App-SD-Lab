@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../fade_animation.dart';
 
 class Signup_Background extends StatelessWidget {
@@ -8,7 +9,7 @@ class Signup_Background extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(color: Colors.white),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -16,9 +17,7 @@ class Signup_Background extends StatelessWidget {
             top: 0,
             child: FadeAnimation(
               2,
-              Container(
-                child: Image.asset('images/undraw_profile.png'),
-              ),
+              Image.asset('images/undraw_profile.png'),
             ),
             width: size.width,
             height: size.height * 0.25,
@@ -28,9 +27,7 @@ class Signup_Background extends StatelessWidget {
             bottom: 0,
             child: FadeAnimation(
               2,
-              Container(
-                child: Image.asset('images/petunia_string.JPG'),
-              ),
+              Image.asset('images/petunia_string.JPG'),
             ),
             width: size.width,
             height: size.height * 0.25,

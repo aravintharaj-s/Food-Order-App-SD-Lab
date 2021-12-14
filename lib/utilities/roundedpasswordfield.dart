@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constants.dart';
 import 'textfield_container.dart';
 
@@ -32,13 +33,13 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
         cursorColor: kSSNColor,
         decoration: InputDecoration(
           hintText: widget.hintText,
-          icon: Icon(
+          icon: const Icon(
             Icons.lock,
             color: kSSNColor,
           ),
           suffixIcon: InkWell(
             onTap: _togglepass,
-            child: Icon(
+            child: const Icon(
               Icons.visibility,
               color: kSSNColor,
             ),

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import '../utilities/roundedinput_field.dart';
 
 import '../constants.dart';
+import '../utilities/roundedinput_field.dart';
 import 'login_page.dart';
 
 class ForgotPassword extends StatelessWidget {
   static String id = 'ForgotPassword_Page';
 
+  const ForgotPassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class ForgotPassword extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: kInactiveColor,
               image: DecorationImage(
                   image: AssetImage('images/undraw_elements_cipa.png'),
@@ -41,18 +42,18 @@ class ForgotPassword extends StatelessWidget {
                       ),
                       SizedBox(height: size.height * 0.01),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 5.0),
+                        margin: const EdgeInsets.symmetric(vertical: 5.0),
                         width: size.width * 0.3,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(29),
                           child: FlatButton(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 20),
                             color: kDarkssn,
                             onPressed: () {
-                              Navigator.pushNamed(context, LoginPage.id) ;
+                              Navigator.pushNamed(context, LoginPage.id);
                             },
-                            child: Text(
+                            child: const Text(
                               'GET OTP',
                               style: TextStyle(color: Colors.white),
                             ),

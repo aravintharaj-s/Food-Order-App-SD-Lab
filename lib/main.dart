@@ -6,18 +6,18 @@ import 'package:sdlad_fos/Pages/invoice.dart';
 import 'package:sdlad_fos/Pages/login_page.dart';
 import 'package:sdlad_fos/Pages/menupage.dart';
 import 'package:sdlad_fos/Pages/signup_page.dart';
+
 import 'Pages/splash.dart';
 
-void main() {
-  initFirebase();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-void initFirebase() async {
-  await Firebase.initializeApp();
-}
-
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,13 +28,13 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: Splash.id,
         routes: {
-          Splash.id: (context) => Splash(),
-          LoginPage.id: (context) => LoginPage(),
+          Splash.id: (context) => const Splash(),
+          LoginPage.id: (context) => const LoginPage(),
           Signup.id: (context) => Signup(),
-          ForgotPassword.id: (context) => ForgotPassword(),
-          MenuPage.id: (context) => MenuPage(),
+          ForgotPassword.id: (context) => const ForgotPassword(),
+          MenuPage.id: (context) => const MenuPage(),
           CartPage.id: (context) => CartPage(),
-          InvoicePage.id: (context) => InvoicePage()
+          InvoicePage.id: (context) => const InvoicePage()
         });
   }
 }

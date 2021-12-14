@@ -1,15 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sdlad_fos/Pages/menupage.dart';
 import 'package:sdlad_fos/Pages/signup_page.dart';
+import 'package:sdlad_fos/fade_animation.dart';
 import 'package:sdlad_fos/utilities/roundedbutton.dart';
 import 'package:sdlad_fos/utilities/roundedinput_field.dart';
 import 'package:sdlad_fos/utilities/roundedpasswordfield.dart';
-import 'signup_page.dart';
-import 'forgotPassword_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import '../constants.dart';
-import 'package:sdlad_fos/fade_animation.dart';
+import 'forgotPassword_page.dart';
+import 'signup_page.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
@@ -34,9 +35,7 @@ class _LoginPageState extends State<LoginPage> {
               top: 0,
               child: FadeAnimation(
                 2,
-                Container(
-                  child: Image.asset('images/undraw_breakfast.png'),
-                ),
+                Image.asset('images/undraw_breakfast.png'),
               ),
               width: size.width,
               height: size.height * 0.25,
@@ -74,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) {
-                            return Login_Successfull();
+                            return const Login_Successfull();
                           }),
                         );
                       } else {
@@ -85,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Don't have an account ?",
                         style: TextStyle(color: kDarkssn),
                       ),
@@ -93,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: () {
                           Navigator.pushNamed(context, Signup.id);
                         },
-                        child: Text(
+                        child: const Text(
                           "Sign Up",
                           style: TextStyle(
                               color: kDarkssn, fontWeight: FontWeight.bold),
@@ -101,14 +100,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, ForgotPassword.id);
                     },
-                    child: Text(
+                    child: const Text(
                       "Forgot Password",
                       style: TextStyle(
                           color: kDarkssn,
@@ -122,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
               bottom: 0,
               child: FadeAnimation(
                 2,
-                Container(
+                SizedBox(
                   child: Image.asset('images/login.png'),
                   width: size.width,
                   height: size.height * 0.365,
@@ -137,8 +136,10 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 class Login_Successfull extends StatelessWidget {
+  const Login_Successfull({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MenuPage();
+    return const MenuPage();
   }
 }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sdlad_fos/Pages/invoice.dart';
-import 'package:sdlad_fos/utilities/navigationDrawerWidget.dart';
-import 'package:sdlad_fos/utilities/menuText.dart';
-import 'package:sdlad_fos/utilities/sample_cart.dart';
 import 'package:sdlad_fos/constants.dart';
+import 'package:sdlad_fos/utilities/menuText.dart';
+import 'package:sdlad_fos/utilities/navigationDrawerWidget.dart';
+import 'package:sdlad_fos/utilities/sample_cart.dart';
 
 class CartPage extends StatefulWidget {
   static String id = 'Cart_page';
+
+  const CartPage({Key? key}) : super(key: key);
   @override
   _CartPageState createState() => _CartPageState();
 }
@@ -14,7 +16,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   TimeOfDay _time = TimeOfDay.now();
 
-  Future<Null> selecTime(BuildContext context) async {
+  Future<Null> selectTime(BuildContext context) async {
     _time = (await showTimePicker(
       context: context,
       initialTime: _time,
@@ -27,8 +29,8 @@ class _CartPageState extends State<CartPage> {
       backgroundColor: kInactiveColor,
       drawer: NavigationDrawerWidget(),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: kDarkssn),
-        title: menuText(
+        iconTheme: const IconThemeData(color: kDarkssn),
+        title: const menuText(
           text: 'MY CART',
           size: 23,
           color: kDarkssn,
@@ -36,12 +38,12 @@ class _CartPageState extends State<CartPage> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(right: 8.0),
             child: GestureDetector(
               onTap: () {
-                selecTime(context);
+                selectTime(context);
               },
-              child: Icon(
+              child: const Icon(
                 Icons.alarm,
                 color: kDarkssn,
                 size: 25,
@@ -54,9 +56,9 @@ class _CartPageState extends State<CartPage> {
         elevation: 0,
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 5.0),
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
         scrollDirection: Axis.vertical,
-        children: <Widget>[
+        children: const <Widget>[
           OrderCard(
               name: "Plain Dosa", img: "images/masala-dosa.png", price: 40),
           OrderCard(
@@ -74,7 +76,7 @@ class _CartPageState extends State<CartPage> {
   Widget _buildTotalContainer() {
     return Container(
       height: 220.0,
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: 10.0,
         right: 10.0,
       ),
@@ -83,7 +85,7 @@ class _CartPageState extends State<CartPage> {
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
+            children: const <Widget>[
               Text(
                 "Subtotal",
                 style: TextStyle(
@@ -100,13 +102,13 @@ class _CartPageState extends State<CartPage> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           ),
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
+            children: const <Widget>[
               Text(
                 "Discount",
                 style: TextStyle(
@@ -123,17 +125,17 @@ class _CartPageState extends State<CartPage> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           ),
           Padding(
-            padding: EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(right: 8.0),
             child: GestureDetector(
                 onTap: () {
-                  selecTime(context);
+                  selectTime(context);
                 },
                 child: Row(
-                  children: [
+                  children: const [
                     menuText(
                       text: "Select Time : ",
                     ),
@@ -145,19 +147,19 @@ class _CartPageState extends State<CartPage> {
                   ],
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           ),
-          Divider(
+          const Divider(
             height: 2.0,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
+            children: const <Widget>[
               Text(
                 "Cart Total",
                 style: TextStyle(
@@ -174,7 +176,7 @@ class _CartPageState extends State<CartPage> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           GestureDetector(
@@ -187,7 +189,7 @@ class _CartPageState extends State<CartPage> {
                 color: kDarkssn,
                 borderRadius: BorderRadius.circular(35.0),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "Proceed To Checkout",
                   style: TextStyle(
