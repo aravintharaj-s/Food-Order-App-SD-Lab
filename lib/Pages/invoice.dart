@@ -3,10 +3,16 @@ import 'package:sdlad_fos/Pages/menupage.dart';
 import 'package:sdlad_fos/constants.dart';
 import 'package:sdlad_fos/utilities/menuText.dart';
 
-class InvoicePage extends StatelessWidget {
+class InvoicePage extends StatefulWidget {
   static String id = 'Invoice_page';
 
   const InvoicePage({Key? key}) : super(key: key);
+
+  @override
+  State<InvoicePage> createState() => _InvoicePageState();
+}
+
+class _InvoicePageState extends State<InvoicePage> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -66,6 +72,10 @@ class InvoicePage extends StatelessWidget {
 }
 
 Widget invoiceBody(context) {
+  int total = 0;
+  for (int i = 0; i < cartItems.length; i++) {
+    total = total + cartItems[i]['price'] as int;
+  }
   return Container(
     height: 374,
     padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -102,18 +112,18 @@ Widget invoiceBody(context) {
           ),
           Column(
             children: List.generate(
-              CartFoodList.length,
+              cartItems.length,
               (index) => CartFoodCard(
-                CartFoodList[index]['imagePath'],
-                CartFoodList[index]['name'],
-                CartFoodList[index]['price'],
+                cartItems[index]['imagePath'],
+                cartItems[index]['name'],
+                cartItems[index]['price'],
               ),
             ),
           ),
           const SizedBox(
             height: 34,
           ),
-          invoiceTotal(160),
+          invoiceTotal(total),
         ],
       ),
     ),

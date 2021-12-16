@@ -22,6 +22,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late String _email, _password;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -66,9 +67,11 @@ class _LoginPageState extends State<LoginPage> {
                   RoundedButton(
                     text: "LOGIN",
                     press: () async {
+                      show(context);
                       UserCredential user = await FirebaseAuth.instance
                           .signInWithEmailAndPassword(
                               email: _email, password: _password);
+
                       if (user != null) {
                         Navigator.push(
                           context,
@@ -132,6 +135,32 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void show(context) {
+    if (_email.toString().isEmpty && _password.toString().isEmpty) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Both fields are empty'),
+          duration: const Duration(seconds: 5),
+        ),
+      );
+    }
+    if (_email.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Email is empty'),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    } else if (_password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Password is empty'),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    }
   }
 }
 

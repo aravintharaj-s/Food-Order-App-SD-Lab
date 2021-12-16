@@ -165,7 +165,7 @@ class _MenuPageState extends State<MenuPage> {
                   selectedCategoryCard == index ? kDarkssn : kInactiveColor,
               shape: const CircleBorder(),
               child: Icon(
-                Icons.chevron_right,
+                Icons.arrow_downward_outlined,
                 color:
                     selectedCategoryCard == index ? Colors.white : Colors.black,
                 size: 20,
@@ -206,7 +206,7 @@ Widget popularFoodCard(String imagePath, String name, int price) {
                 ),
               ),
               const SizedBox(
-                width: 20.0,
+                width: 15.0,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

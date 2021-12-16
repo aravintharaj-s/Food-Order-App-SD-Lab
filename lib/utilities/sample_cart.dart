@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:sdlad_fos/Pages/menupage.dart';
 import 'package:sdlad_fos/constants.dart';
 
-class OrderCard extends StatelessWidget {
+class OrderCard extends StatefulWidget {
   final String name;
   final String img;
   final int price;
   const OrderCard({required this.name, required this.img, required this.price});
 
+  @override
+  State<OrderCard> createState() => _OrderCardState();
+}
+
+int selected = 0;
+
+class _OrderCardState extends State<OrderCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -55,15 +63,10 @@ class OrderCard extends StatelessWidget {
               height: 70.0,
               width: 70.0,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(img), fit: BoxFit.cover),
-                  borderRadius: BorderRadius.circular(35.0),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 5.0,
-                        offset: Offset(0.0, 2.0))
-                  ]),
+                image: DecorationImage(
+                    image: AssetImage(widget.img), fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(35.0),
+              ),
             ),
             const SizedBox(
               width: 20.0,
@@ -73,13 +76,13 @@ class OrderCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  name,
+                  widget.name,
                   style: const TextStyle(
                       fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 5.0),
                 Text(
-                  "$price",
+                  "${widget.price}",
                   style: const TextStyle(
                       fontSize: 16.0,
                       color: kDarkssn,
