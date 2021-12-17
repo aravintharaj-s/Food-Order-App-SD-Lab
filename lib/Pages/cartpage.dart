@@ -5,6 +5,9 @@ import 'package:sdlad_fos/constants.dart';
 import 'package:sdlad_fos/utilities/menuText.dart';
 import 'package:sdlad_fos/utilities/navigationDrawerWidget.dart';
 import 'package:sdlad_fos/utilities/sample_cart.dart';
+import 'package:sdlad_fos/utilities/roundedinput_field.dart';
+
+String selected_time = "";
 
 class CartPage extends StatefulWidget {
   static String id = 'Cart_page';
@@ -15,15 +18,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  TimeOfDay _time = TimeOfDay.now();
-
-  Future<Null> selectTime(BuildContext context) async {
-    _time = (await showTimePicker(
-      context: context,
-      initialTime: _time,
-    ))!;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,21 +31,6 @@ class _CartPageState extends State<CartPage> {
           color: kDarkssn,
           fontWeight: FontWeight.bold,
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: GestureDetector(
-              onTap: () {
-                selectTime(context);
-              },
-              child: const Icon(
-                Icons.alarm,
-                color: kDarkssn,
-                size: 25,
-              ),
-            ),
-          ),
-        ],
         centerTitle: true,
         backgroundColor: kInactiveColor,
         elevation: 0,
@@ -66,7 +45,7 @@ class _CartPageState extends State<CartPage> {
               price: cartItems[index]['price']);
         },
       ),
-    bottomNavigationBar: _buildTotalContainer(),
+      bottomNavigationBar: _buildTotalContainer(),
     );
   }
 
@@ -86,29 +65,27 @@ class _CartPageState extends State<CartPage> {
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-           
           ),
           const SizedBox(
             height: 10.0,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: GestureDetector(
-                onTap: () {
-                  selectTime(context);
-                },
+            child: Container(
                 child: Row(
-                  children: const [
-                    menuText(
-                      text: "Select Time : ",
-                    ),
-                    Icon(
-                      Icons.alarm,
-                      color: kDarkssn,
-                      size: 25,
-                    ),
-                  ],
-                )),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RoundedInputField(
+                  c1: Colors.white,
+                  h1: 50,
+                  icon: Icons.alarm,
+                  hintText: "Enter Time",
+                  onChanged: (value) {
+                    selected_time = value;
+                  },
+                )
+              ],
+            )),
           ),
           const SizedBox(
             height: 10.0,
@@ -144,7 +121,11 @@ class _CartPageState extends State<CartPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, InvoicePage.id);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          InvoicePage(selected_time: selected_time)));
             },
             child: Container(
               height: 50.0,

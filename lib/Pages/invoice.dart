@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sdlad_fos/Pages/menupage.dart';
 import 'package:sdlad_fos/constants.dart';
 import 'package:sdlad_fos/utilities/menuText.dart';
+import 'package:sdlad_fos/Pages/cartpage.dart';
 
 class InvoicePage extends StatefulWidget {
   static String id = 'Invoice_page';
-
-  const InvoicePage({Key? key}) : super(key: key);
+  final String selected_time;
+  const InvoicePage({Key? key, required this.selected_time}) : super(key: key);
 
   @override
   State<InvoicePage> createState() => _InvoicePageState();
@@ -15,9 +17,114 @@ class InvoicePage extends StatefulWidget {
 class _InvoicePageState extends State<InvoicePage> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-        child: Column(
-      children: [invoiceHeader(), invoiceBody(context)],
+    int total = 0;
+    for (int i = 0; i < cartItems.length; i++) {
+      total = total + cartItems[i]['price'] as int;
+    }
+    return Scaffold(
+        body: SafeArea(
+      child: ListView(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 265,
+            color: kInactiveColor,
+            padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    menuText(text: "INVOICE", size: 30),
+                    SizedBox(
+                      height: 7,
+                    ),
+                    menuText(text: "Order ID : #20071203", size: 15),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // TODO: form get actual date and format it accondingly
+                    menuText(text: "Date : 17 DECEMBER 2021", size: 15),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    menuText(
+                        text: "Pick it up by  :  $selected_time", size: 15),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Icon(
+                          Icons.receipt_long_outlined,
+                          size: 60,
+                        ),
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            color: Colors.white,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 23,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Items",
+                          style: TextStyle(color: Colors.black, fontSize: 25)),
+                      FlatButton(
+                        color: kInactiveColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18)),
+                        child: Row(
+                          children: const [
+                            Icon(Icons.chevron_left),
+                            Text("Back to Menu"),
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, MenuPage.id);
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Column(
+                    children: List.generate(
+                      cartItems.length,
+                      (index) => CartFoodCard(
+                        cartItems[index]['imagePath'],
+                        cartItems[index]['name'],
+                        cartItems[index]['price'],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 34,
+                  ),
+                  invoiceTotal(total),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     ));
   }
 
@@ -26,31 +133,31 @@ class _InvoicePageState extends State<InvoicePage> {
       width: double.infinity,
       height: 265,
       color: kInactiveColor,
-      padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
+      padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              menuText(text: "INVOICE", size: 40),
+            children: [
+              menuText(text: "INVOICE", size: 30),
               SizedBox(
-                height: 10,
+                height: 7,
               ),
-              menuText(text: "Order ID : #20071203", size: 20),
+              menuText(text: "Order ID : #20071203", size: 15),
               SizedBox(
                 height: 10,
               ),
               // TODO: form get actual date and format it accondingly
-              menuText(text: "Date : 25 SEPTEMBER 2021", size: 20),
+              menuText(text: "Date : 17 DECEMBER 2021", size: 15),
               SizedBox(
-                height: 10,
+                height: 8,
               ),
-              menuText(text: "Pick it up by  : 01:30", size: 20),
+              menuText(text: "Pick it up by  :  $selected_time", size: 15),
             ],
           ),
           const SizedBox(
-            height: 10,
+            height: 8,
           ),
           Row(
             children: [

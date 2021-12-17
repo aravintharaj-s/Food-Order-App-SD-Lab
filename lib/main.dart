@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: Splash.id,
         routes: {
-          Splash.id: (context) =>  Splash(),
+          Splash.id: (context) => Splash(),
           LoginPage.id: (context) => const LoginPage(),
           Signup.id: (context) => Signup(),
-          ForgotPassword.id: (context) =>  ForgotPassword(),
+          ForgotPassword.id: (context) => ForgotPassword(),
           MenuPage.id: (context) => const MenuPage(),
           //CartPage.id: (context) => const CartPage(),
-          InvoicePage.id: (context) =>  InvoicePage()
+          // InvoicePage.id: (context) =>  InvoicePage()
         });
   }
 }

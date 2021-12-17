@@ -17,7 +17,6 @@ int selected = 0;
 
 class _OrderCardState extends State<OrderCard> {
   int _counter = 1;
-  
 
   void _incrementCount() {
     setState(() {
@@ -26,14 +25,11 @@ class _OrderCardState extends State<OrderCard> {
   }
 
   void _decrementCount() {
-    setState(() => _counter--);
+    if (_counter > 0) setState(() => _counter--);
   }
-  
- 
+
   @override
   Widget build(BuildContext context) {
-    
-      
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
@@ -46,8 +42,8 @@ class _OrderCardState extends State<OrderCard> {
                 border: Border.all(color: kDarkssn, width: 2.0),
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              width: 45.0,
-              height: 73.0,
+              width: 42.0,
+              height: 69.0,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10.0,
@@ -59,10 +55,10 @@ class _OrderCardState extends State<OrderCard> {
                           _incrementCount();
                         },
                         child: const Icon(Icons.keyboard_arrow_up,
-                            color: kDarkssn)),
-                     Text(
+                            size: 20, color: kDarkssn)),
+                    Text(
                       '$_counter',
-                      style: TextStyle(fontSize: 18.0, color: kDarkssn),
+                      style: TextStyle(fontSize: 15.0, color: kDarkssn),
                     ),
                     InkWell(
                       onTap: () {
@@ -103,7 +99,7 @@ class _OrderCardState extends State<OrderCard> {
                 ),
                 const SizedBox(height: 5.0),
                 Text(
-                  "${widget.price*_counter}",
+                  "${widget.price * _counter}",
                   style: const TextStyle(
                       fontSize: 16.0,
                       color: kDarkssn,
@@ -131,9 +127,7 @@ class _OrderCardState extends State<OrderCard> {
             ),
             const Spacer(),
             GestureDetector(
-              onTap: () {
-               
-              },
+              onTap: () {},
               child: const Icon(
                 Icons.cancel,
                 color: Colors.black,
@@ -142,9 +136,6 @@ class _OrderCardState extends State<OrderCard> {
           ],
         ),
       ),
-    
     );
-
   }
-
 }
