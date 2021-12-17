@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sdlad_fos/Pages/menupage.dart';
 import 'package:sdlad_fos/constants.dart';
+import '../Pages/invoice.dart';
 
 class OrderCard extends StatefulWidget {
   final String name;
@@ -15,8 +16,24 @@ class OrderCard extends StatefulWidget {
 int selected = 0;
 
 class _OrderCardState extends State<OrderCard> {
+  int _counter = 1;
+  
+
+  void _incrementCount() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrementCount() {
+    setState(() => _counter--);
+  }
+  
+ 
   @override
   Widget build(BuildContext context) {
+    
+      
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
@@ -38,15 +55,19 @@ class _OrderCardState extends State<OrderCard> {
                 child: Column(
                   children: <Widget>[
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          _incrementCount();
+                        },
                         child: const Icon(Icons.keyboard_arrow_up,
                             color: kDarkssn)),
-                    const Text(
-                      "1",
+                     Text(
+                      '$_counter',
                       style: TextStyle(fontSize: 18.0, color: kDarkssn),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        _decrementCount();
+                      },
                       child: const Icon(
                         Icons.keyboard_arrow_down,
                         color: kDarkssn,
@@ -82,7 +103,7 @@ class _OrderCardState extends State<OrderCard> {
                 ),
                 const SizedBox(height: 5.0),
                 Text(
-                  "${widget.price}",
+                  "${widget.price*_counter}",
                   style: const TextStyle(
                       fontSize: 16.0,
                       color: kDarkssn,
@@ -110,7 +131,9 @@ class _OrderCardState extends State<OrderCard> {
             ),
             const Spacer(),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+               
+              },
               child: const Icon(
                 Icons.cancel,
                 color: Colors.black,
@@ -119,6 +142,9 @@ class _OrderCardState extends State<OrderCard> {
           ],
         ),
       ),
+    
     );
+
   }
+
 }

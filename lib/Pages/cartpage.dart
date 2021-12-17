@@ -66,7 +66,7 @@ class _CartPageState extends State<CartPage> {
               price: cartItems[index]['price']);
         },
       ),
-      bottomNavigationBar: _buildTotalContainer(),
+    bottomNavigationBar: _buildTotalContainer(),
     );
   }
 
@@ -86,45 +86,7 @@ class _CartPageState extends State<CartPage> {
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
-              Text(
-                "Subtotal",
-                style: TextStyle(
-                    color: kInactiveColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "160.0",
-                style: TextStyle(
-                    color: kInactiveColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
-              Text(
-                "Discount",
-                style: TextStyle(
-                    color: kInactiveColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "10.0",
-                style: TextStyle(
-                    color: kInactiveColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
+           
           ),
           const SizedBox(
             height: 10.0,
