@@ -1,16 +1,12 @@
-# sdlad_fos
+# Food Ordering App for SSN College eateries
 
-A new Flutter project.
+A Flutter-Firebase project with which you can order food.This mobile application for Canteen food ordering was developed to shorten waiting time and to encourage e-payment to eliminate the use of cash. The current technique of ordering meals is standing in line to pay a token for the item we want. It is a time-consuming and exhausting procedure. The user is given an application in which he or she is presented with a list of all food products available in the canteen at that time, from which they may choose the food they prefer. Once the order is verified, the order information are posted in the order history listing page, along with a button that the waiter must press after delivering the dish.
 
-## Getting Started
+Tools Used
+Framework - Flutter
+Language - Dart
+Database - Firebase Firestore
+IDE - Android Studio and Visual Studio Code
+Version Control - Git
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
